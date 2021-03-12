@@ -1,0 +1,8 @@
+.profile {
+    display: flex;
+    width: calc(100% - 400px);
+    margin: 0 auto;
+    padding-top: 40px;
+    align-items: center;
+    justify-content: space-between;
+}
