@@ -1,4 +1,23 @@
 .profile-info {
     display: flex;
     align-items: center;
+
 }
+
+@media screen and (max-width: 690px) {
+    .profile-info {
+      /*flex-direction: column;*/
+      flex-wrap: wrap;
+      text-align: center;
+
+    }
+  }
+
+  @media screen and (max-width: 362px) {
+    .profile-info {
+      /*flex-direction: column;*/
+      justify-content: center;
+      align-items: center;
+
+    }
+  }

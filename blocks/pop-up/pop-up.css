@@ -1,0 +1,13 @@
+.pop-up {
+    background:rgba(0,0,0,.4);
+    /*display:none;*/
+    height:100%;
+    position:fixed;
+    text-align:center;
+    top:0;
+    width:100%;
+    z-index:10000;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
