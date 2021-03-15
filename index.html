@@ -10,110 +10,110 @@
 
 <body class="page">
     <div class="page__container">
-        <header class="header">
-            <img class="logo" src="./images/logo.svg" alt="лого">
-        </header>
-        <main class="content">
-            <section class="profile">
-                <div class="profile-info">
-                    <img class="profile-info__avatar" src="./images/avatar.jpg" alt="аватарка">
-                    <div class="profile-info__info">
-                        <h3 class="profile-info__name">Жак-Ив Кусто</h3>
-                        <p class="profile-info__about">Исследователь океана</p>
-                    </div>
-                    <a class="profile-info__edit-button" href="#"></a>
-                </div>
-                <a class="profile__add-button" href="#"></a>
-            </section>
-            <section class="photo-grid">
-                <ul class="photo-grid__list">
-                    <li class="photo-grid__list-item">
-                        <article class="element">
-                            <img class="element__image" src="./images/kirill-pershin-karachaevsk.jpg" alt="карачаевск">
-                            <div class="element__text-container">
-                                <h3 class="element__title">
-                                    Карачаевск
-                                </h3>
-                                <a class="element__like" href="#"></a>
-                            </div>
-                        </article>
-                    </li>
-                    <li class="photo-grid__list-item">
-                        <article class="element">
-                            <img class="element__image" src="./images/kirill-pershin-elbrus.jpg" alt="эльбрус">
-                            <div class="element__text-container">
-                                <h3 class="element__title">
-                                    Гора Эльбрус
-                                </h3>
-                                <a class="element__like" href="#"></a>
-                            </div>
-                        </article>
-                    </li>
-                    <li class="photo-grid__list-item">
-                        <article class="element">
-                            <img class="element__image" src="./images/kirill-pershin-dombai.jpg" alt="домбай">
-                            <div class="element__text-container">
-                                <h3 class="element__title">
-                                    Домбай
-                                </h3>
-                                <a class="element__like" href="#"></a>
-                            </div>
-                        </article>
-                    </li>
-                    <li class="photo-grid__list-item">
-                        <article class="element">
-                            <img class="element__image" src="./images/kirill-pershin-elbrus.jpg" alt="эльбрус">
-                            <div class="element__text-container">
-                                <h3 class="element__title">
-                                    Гора Эльбрус
-                                </h3>
-                                <a class="element__like" href="#"></a>
-                            </div>
-                        </article>
-                    </li>
-                    <li class="photo-grid__list-item">
-                        <article class="element">
-                            <img class="element__image" src="./images/kirill-pershin-dombai.jpg" alt="домбай">
-                            <div class="element__text-container">
-                                <h3 class="element__title">
-                                    Домбай
-                                </h3>
-                                <a class="element__like" href="#"></a>
-                            </div>
-                        </article>
-                    </li>
-                    <li class="photo-grid__list-item">
-                        <article class="element">
-                            <img class="element__image" src="./images/kirill-pershin-karachaevsk.jpg" alt="карачаевск">
-                            <div class="element__text-container">
-                                <h3 class="element__title">
-                                    Карачаево-Черкессия
-                                </h3>
-                                <a class="element__like" href="#"></a>
-                            </div>
-                        </article>
-                    </li>
-                </ul>
-            </section>
-        </main>
-        <footer class="footer">
-            <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
-        </footer>
         <section class="pop-up">
-            <div class="pop-up__close-button">
-                
-            </div>
-        <form class="pop-up__container"">
+            <div class="pop-up__close-button"></div>
+            <form class="pop-up__container">
             <div>
-                <h3 class="pop-up__title">Редактировать профиль</h3>
-            <fieldset class="pop-up__name">
-                <input type="text" class="pop-up__item">
-            </fieldset>
-            <fieldset class="pop-up__about">
-                <input type="text" class="pop-up__item">
-            </fieldset>
-        </div>
-        </form>
-    </section>
+                <h3 class=" pop-up__title">Редактировать профиль</h3>
+                <fieldset class="pop-up__input-container">
+                    <input type="text" class="pop-up__item" id="name" name="name">
+                    <input type="text" class="pop-up__item" id="about" name="about">
+                </fieldset>
+                <fieldset class="pop-up__handlers">
+                    <input type="submit" class="pop-up__submit-button">
+                </fieldset>
     </div>
+    </form>
+    </section>
+    <header class="header">
+        <img class="logo" src="./images/logo.svg" alt="лого">
+    </header>
+    <main class="content">
+        <section class="profile">
+            <div class="profile-info">
+                <img class="profile-info__avatar" src="./images/avatar.jpg" alt="аватарка">
+                <div class="profile-info__info">
+                    <h3 class="profile-info__name">Жак-Ив Кусто</h3>
+                    <p class="profile-info__about">Исследователь океана</p>
+                </div>
+                <a class="profile-info__edit-button" href="#"></a>
+            </div>
+            <a class="profile__add-button" href="#"></a>
+        </section>
+        <section class="photo-grid">
+            <ul class="photo-grid__list">
+                <li class="photo-grid__list-item">
+                    <article class="element">
+                        <img class="element__image" src="./images/kirill-pershin-karachaevsk.jpg" alt="карачаевск">
+                        <div class="element__text-container">
+                            <h3 class="element__title">
+                                Карачаевск
+                            </h3>
+                            <a class="element__like" href="#"></a>
+                        </div>
+                    </article>
+                </li>
+                <li class="photo-grid__list-item">
+                    <article class="element">
+                        <img class="element__image" src="./images/kirill-pershin-elbrus.jpg" alt="эльбрус">
+                        <div class="element__text-container">
+                            <h3 class="element__title">
+                                Гора Эльбрус
+                            </h3>
+                            <a class="element__like" href="#"></a>
+                        </div>
+                    </article>
+                </li>
+                <li class="photo-grid__list-item">
+                    <article class="element">
+                        <img class="element__image" src="./images/kirill-pershin-dombai.jpg" alt="домбай">
+                        <div class="element__text-container">
+                            <h3 class="element__title">
+                                Домбай
+                            </h3>
+                            <a class="element__like" href="#"></a>
+                        </div>
+                    </article>
+                </li>
+                <li class="photo-grid__list-item">
+                    <article class="element">
+                        <img class="element__image" src="./images/kirill-pershin-elbrus.jpg" alt="эльбрус">
+                        <div class="element__text-container">
+                            <h3 class="element__title">
+                                Гора Эльбрус
+                            </h3>
+                            <a class="element__like" href="#"></a>
+                        </div>
+                    </article>
+                </li>
+                <li class="photo-grid__list-item">
+                    <article class="element">
+                        <img class="element__image" src="./images/kirill-pershin-dombai.jpg" alt="домбай">
+                        <div class="element__text-container">
+                            <h3 class="element__title">
+                                Домбай
+                            </h3>
+                            <a class="element__like" href="#"></a>
+                        </div>
+                    </article>
+                </li>
+                <li class="photo-grid__list-item">
+                    <article class="element">
+                        <img class="element__image" src="./images/kirill-pershin-karachaevsk.jpg" alt="карачаевск">
+                        <div class="element__text-container">
+                            <h3 class="element__title">
+                                Карачаево-Черкессия
+                            </h3>
+                            <a class="element__like" href="#"></a>
+                        </div>
+                    </article>
+                </li>
+            </ul>
+        </section>
+    </main>
+    <footer class="footer">
+        <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
+    </footer>
+    </div>
+    <script src="./script.js"></script>
 </body>

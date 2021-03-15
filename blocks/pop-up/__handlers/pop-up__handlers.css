@@ -1,0 +1,7 @@
+.pop-up__handlers {
+    width: calc(100% - 72px);
+    margin: auto;
+    padding: 0;
+    border: 0;
+    
+}

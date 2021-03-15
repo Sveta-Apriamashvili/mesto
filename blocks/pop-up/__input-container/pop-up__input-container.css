@@ -1,0 +1,7 @@
+.pop-up__input-container {
+    width: calc(100% - 72px);
+    padding: 0;
+    margin: auto;
+    padding-bottom: 48px;
+    border: 0;
+}
