@@ -6,6 +6,7 @@ let profileAbout = profile.querySelector('.profile-info__about');
 let editButton = profile.querySelector('.profile-info__edit-button');
 let closeButton = popup.querySelector('.pop-up__close-button');
 let popupInputs = popup.querySelectorAll('.pop-up__item');
+let formElement = popup.querySelector('.pop-up__container');
 
 function openInfoPopup () {
     popupInputs[0].value = profileName.innerText;
@@ -20,4 +21,14 @@ function closeInfoPopup () {
 }
 
 closeButton.addEventListener('click', closeInfoPopup)
+
+function formSubmitHandler (evt) {
+    profileName.textContent = popupInputs[0].value;
+    profileAbout.textContent = popupInputs[1].value;
+    evt.preventDefault();
+
+    closeInfoPopup();
+}
+
+formElement.addEventListener('submit', formSubmitHandler); 
 

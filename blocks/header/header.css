@@ -1,19 +1,19 @@
 .header {
     width: calc(100% - 400px);
-    margin: 28px auto 0 auto;
+    margin: 45px auto 0 auto;
     border-bottom: 1px solid #545454;
     height: 74px;
-
 }
 
 @media screen and (max-width: 1070px) {
     .header {
         width: calc(100% - 200px);
     }
-  }
+}
 
-  @media screen and (max-width: 690px) {
+@media screen and (max-width: 690px) {
     .header {
         width: 100%;
+        height: 56px;
     }
-  }
+}
