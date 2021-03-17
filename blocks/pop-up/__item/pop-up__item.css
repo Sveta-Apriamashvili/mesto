@@ -11,8 +11,5 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-}
-
-.pop-up__item[type="text"] {
     padding-bottom: 13px;
 }

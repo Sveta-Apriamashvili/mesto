@@ -10,7 +10,7 @@ margin-right: 15px;
 padding-left: 32px;
 }
 
-button:focus{
+.element__like:focus{
     outline:0px;
     }
 

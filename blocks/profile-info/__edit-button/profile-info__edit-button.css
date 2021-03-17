@@ -10,7 +10,7 @@
     margin-bottom: 30px;
 }
 
-.profile__add-button:focus {
+.profile-info__edit-button:focus {
     outline: 0px;
 }
 
