@@ -5,30 +5,29 @@ let profileName = profile.querySelector('.profile-info__name');
 let profileAbout = profile.querySelector('.profile-info__about');
 let editButton = profile.querySelector('.profile-info__edit-button');
 let closeButton = popup.querySelector('.pop-up__close-button');
-let popupInputs = popup.querySelectorAll('.pop-up__item');
+let popupName = popup.querySelector('#name');
+let popupAbout = popup.querySelector('#about');
 let formElement = popup.querySelector('.pop-up__container');
 
 function openInfoPopup () {
-    popupInputs[0].value = profileName.innerText;
-    popupInputs[1].value = profileAbout.innerText;
-    popup.classList.add('pop-up_opened');
+    popupName.value = profileName.textContent;
+    popupAbout.value = profileAbout.textContent;
+    popup.classList.add('pop-up_opened');  // открываем форму редактирования профиля с предзаполненными данными
 }
-
-editButton.addEventListener('click', openInfoPopup)
 
 function closeInfoPopup () {
-    popup.classList.remove('pop-up_opened')
+    popup.classList.remove('pop-up_opened')  // закрываем форму редактирования профиля
 }
-
-closeButton.addEventListener('click', closeInfoPopup)
 
 function formSubmitHandler (evt) {
-    profileName.textContent = popupInputs[0].value;
-    profileAbout.textContent = popupInputs[1].value;
+    profileName.textContent = popupName.value;
+    profileAbout.textContent = popupAbout.value;
     evt.preventDefault();
 
-    closeInfoPopup();
+    closeInfoPopup();  //применяем данные из формы редактирования профиля
 }
 
-formElement.addEventListener('submit', formSubmitHandler); 
 
+editButton.addEventListener('click', openInfoPopup); // слушатель для кнопки редактирования профиля
+closeButton.addEventListener('click', closeInfoPopup); // слушатель для кнопки закрыть форму редактирования профиля
+formElement.addEventListener('submit', formSubmitHandler); // слушатель для кнопки сохранить формы редактирования профиля

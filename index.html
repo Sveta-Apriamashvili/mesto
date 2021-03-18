@@ -10,21 +10,6 @@
 
 <body class="page">
     <div class="page__container">
-        <section class="pop-up">
-            <div class="pop-up__close-button"></div>
-            <form class="pop-up__container">
-                <div>
-                    <h3 class=" pop-up__title">Редактировать профиль</h3>
-                    <fieldset class="pop-up__input-container">
-                        <input type="text" class="pop-up__item" id="name" name="name">
-                        <input type="text" class="pop-up__item" id="about" name="about">
-                    </fieldset>
-                    <fieldset class="pop-up__handlers">
-                        <button type="submit" class="pop-up__submit-button">Сохранить</button>
-                    </fieldset>
-                </div>
-            </form>
-        </section>
         <header class="header">
             <img class="logo" src="./images/logo.svg" alt="лого">
         </header>
@@ -33,80 +18,68 @@
                 <div class="profile-info">
                     <img class="profile-info__avatar" src="./images/avatar.jpg" alt="аватарка">
                     <div class="profile-info__info">
-                        <h3 class="profile-info__name">Жак-Ив Кусто</h3>
+                        <h1 class="profile-info__name">Жак-Ив Кусто</h1>
                         <p class="profile-info__about">Исследователь океана</p>
                     </div>
-                    <button class="profile-info__edit-button"></button>
+                    <button class="profile-info__edit-button" type="button" aria-label="edit"></button>
                 </div>
-                <button class="profile__add-button"></button>
+                <button class="profile__add-button" type="button" aria-label="add"></button>
             </section>
             <section class="photo-grid">
                 <ul class="photo-grid__list">
-                    <li class="photo-grid__list-item">
-                        <article class="element">
-                            <img class="element__image" src="./images/karachay.jpeg" alt="карачаевск">
-                            <div class="element__text-container">
-                                <h3 class="element__title">
-                                    Карачаевск
-                                </h3>
-                                <button class="element__like"></button>
-                            </div>
-                        </article>
+                    <li class="element">
+                        <img class="element__image" src="./images/karachay.jpeg" alt="карачаевск">
+                        <div class="element__text-container">
+                            <h3 class="element__title">
+                                Карачаевск
+                            </h3>
+                            <button class="element__like"></button>
+                        </div>
                     </li>
-                    <li class="photo-grid__list-item">
-                        <article class="element">
-                            <img class="element__image" src="./images/kirill-pershin-elbrus.jpeg" alt="эльбрус">
-                            <div class="element__text-container">
-                                <h3 class="element__title">
-                                    Гора Эльбрус
-                                </h3>
-                                <button class="element__like"></button>
-                            </div>
-                        </article>
+                    <li class="element">
+                        <img class="element__image" src="./images/kirill-pershin-elbrus.jpeg" alt="эльбрус">
+                        <div class="element__text-container">
+                            <h3 class="element__title">
+                                Гора Эльбрус
+                            </h3>
+                            <button class="element__like" type="button" aria-label="like"></button>
+                        </div>
                     </li>
-                    <li class="photo-grid__list-item">
-                        <article class="element">
-                            <img class="element__image" src="./images/kirill-pershin-dombai.jpeg" alt="домбай">
-                            <div class="element__text-container">
-                                <h3 class="element__title">
-                                    Домбай
-                                </h3>
-                                <button class="element__like"></button>
-                            </div>
-                        </article>
+                    <li class="element">
+                        <img class="element__image" src="./images/kirill-pershin-dombai.jpeg" alt="домбай">
+                        <div class="element__text-container">
+                            <h3 class="element__title">
+                                Домбай
+                            </h3>
+                            <button class="element__like"></button>
+                        </div>
                     </li>
-                    <li class="photo-grid__list-item">
-                        <article class="element">
-                            <img class="element__image" src="./images/kirill-pershin-elbrus.jpeg" alt="эльбрус">
-                            <div class="element__text-container">
-                                <h3 class="element__title">
-                                    Гора Эльбрус
-                                </h3>
-                                <button class="element__like"></button>
-                            </div>
-                        </article>
+                    <li class="element">
+                        <img class="element__image" src="./images/kirill-pershin-elbrus.jpeg" alt="эльбрус">
+                        <div class="element__text-container">
+                            <h3 class="element__title">
+                                Гора Эльбрус
+                            </h3>
+                            <button class="element__like"></button>
+                        </div>
                     </li>
-                    <li class="photo-grid__list-item">
-                        <article class="element">
-                            <img class="element__image" src="./images/kirill-pershin-dombai.jpeg" alt="домбай">
-                            <div class="element__text-container">
-                                <h3 class="element__title">
-                                    Домбай
-                                </h3>
-                                <button class="element__like"></button>
-                            </div>
-                        </article>
+                    <li class="element">
+                        <img class="element__image" src="./images/kirill-pershin-dombai.jpeg" alt="домбай">
+                        <div class="element__text-container">
+                            <h3 class="element__title">
+                                Домбай
+                            </h3>
+                            <button class="element__like"></button>
+                        </div>
                     </li>
-                    <li class="photo-grid__list-item">
-                        <article class="element">
-                            <img class="element__image" src="./images/karachay.jpeg" alt="карачаевск">
-                            <div class="element__text-container">
-                                <h3 class="element__title">
-                                    Карачаево-Черкессия
-                                </h3>
-                                <button class="element__like"></button>
-                            </div>
-                        </article>
+                    <li class="element">
+                        <img class="element__image" src="./images/karachay.jpeg" alt="карачаевск">
+                        <div class="element__text-container">
+                            <h3 class="element__title">
+                                Карачаево-Черкессия
+                            </h3>
+                            <button class="element__like"></button>
+                        </div>
                     </li>
                 </ul>
             </section>
@@ -114,7 +87,24 @@
         <footer class="footer">
             <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
         </footer>
+        <div class="pop-up">
+            <button class="pop-up__close-button" type="button" aria-label="close"></button>
+            <div class="pop-up__container">
+                <h3 class=" pop-up__title">Редактировать профиль</h3>
+                <form class="pop-up__admin">
+                    <div class="pop-up__input-container">
+                        <input type="text" class="pop-up__item" id="name" name="name">
+                        <input type="text" class="pop-up__item" id="about" name="about">
+                    </div>
+                    <div class="pop-up__handlers">
+                        <button type="submit" class="pop-up__submit-button">Сохранить</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
     </div>
     <script src="./scripts/script.js"></script>
 </body>
+
 </html>
