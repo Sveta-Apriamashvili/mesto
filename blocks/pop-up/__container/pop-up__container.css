@@ -4,7 +4,9 @@
     margin: auto;
     border-radius: 10px;
     box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
-    
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 @media screen and (max-width: 600px) {

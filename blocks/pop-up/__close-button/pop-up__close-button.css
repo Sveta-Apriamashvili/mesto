@@ -2,12 +2,12 @@
     background-image: url(../../../images/close-icon.svg);
     background-size: 100%;
     background-repeat: no-repeat;
+    background-color: transparent;
     width: 58px;
     height: 58px;
     position: absolute;
-    margin-top: 80px;
-    margin-left: 460px;
-    background-color: transparent;
+    top: -50px;
+    right: -50px;
     border: 0;
     padding: 0;
 }
@@ -23,8 +23,8 @@
 
 @media screen and (max-width: 600px) {
     .pop-up__close-button {
-        margin-top: 85px;
-        margin-left: 263px;
+        top: -45px;
+        right: -25px;
         background-size: 60%;
     }
 }
