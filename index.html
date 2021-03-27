@@ -26,69 +26,13 @@
                 <button class="profile__add-button" type="button" aria-label="add"></button>
             </section>
             <section class="photo-grid">
-                <ul class="photo-grid__list">
-                    <li class="element">
-                        <img class="element__image" src="./images/karachay.jpeg" alt="карачаевск">
-                        <div class="element__text-container">
-                            <h3 class="element__title">
-                                Карачаевск
-                            </h3>
-                            <button class="element__like" type="button" aria-label="like"></button>
-                        </div>
-                    </li>
-                    <li class="element">
-                        <img class="element__image" src="./images/kirill-pershin-elbrus.jpeg" alt="эльбрус">
-                        <div class="element__text-container">
-                            <h3 class="element__title">
-                                Гора Эльбрус
-                            </h3>
-                            <button class="element__like" type="button" aria-label="like"></button>
-                        </div>
-                    </li>
-                    <li class="element">
-                        <img class="element__image" src="./images/kirill-pershin-dombai.jpeg" alt="домбай">
-                        <div class="element__text-container">
-                            <h3 class="element__title">
-                                Домбай
-                            </h3>
-                            <button class="element__like" type="button" aria-label="like"></button>
-                        </div>
-                    </li>
-                    <li class="element">
-                        <img class="element__image" src="./images/kirill-pershin-elbrus.jpeg" alt="эльбрус">
-                        <div class="element__text-container">
-                            <h3 class="element__title">
-                                Гора Эльбрус
-                            </h3>
-                            <button class="element__like" type="button" aria-label="like"></button>
-                        </div>
-                    </li>
-                    <li class="element">
-                        <img class="element__image" src="./images/kirill-pershin-dombai.jpeg" alt="домбай">
-                        <div class="element__text-container">
-                            <h3 class="element__title">
-                                Домбай
-                            </h3>
-                            <button class="element__like" type="button" aria-label="like"></button>
-                        </div>
-                    </li>
-                    <li class="element">
-                        <img class="element__image" src="./images/karachay.jpeg" alt="карачаевск">
-                        <div class="element__text-container">
-                            <h3 class="element__title">
-                                Карачаево-Черкессия
-                            </h3>
-                            <button class="element__like" type="button" aria-label="like"></button>
-                        </div>
-                    </li>
-                </ul>
+                <ul class="photo-grid__list"></ul>
             </section>
         </main>
         <footer class="footer">
             <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
         </footer>
         <div class="pop-up">
-            
             <div class="pop-up__container">
                 <button class="pop-up__close-button" type="button" aria-label="close"></button>
                 <h3 class=" pop-up__title">Редактировать профиль</h3>
@@ -100,8 +44,16 @@
                         <button type="submit" class="pop-up__submit-button">Сохранить</button>
                 </form>
             </div>
-
         </div>
+        <template class="element-template">
+            <li class="element">
+                <img class="element__image" src="" alt="">
+                <div class="element__text-container">
+                    <h3 class="element__title"></h3>
+                    <button class="element__like" type="button" aria-label="like"></button>
+                </div>
+            </li>
+        </template>
     </div>
     <script src="./scripts/script.js"></script>
 </body>
