@@ -1,13 +1,28 @@
-let container = document.querySelector('.page__container');
-let popup = container.querySelector('.pop-up');
-let profile = container.querySelector('.profile');
-let profileName = profile.querySelector('.profile-info__name');
-let profileAbout = profile.querySelector('.profile-info__about');
-let editButton = profile.querySelector('.profile-info__edit-button');
-let closeButton = popup.querySelector('.pop-up__close-button');
-let popupName = popup.querySelector('#name');
-let popupAbout = popup.querySelector('#about');
-let formElement = popup.querySelector('.pop-up__container');
+const container = document.querySelector('.page__container');
+const profile = container.querySelector('.profile');
+
+// pop-ups
+const popupEdit = container.querySelector('.pop-up_type_edit');
+const popupAddElement = container.querySelector('.pop-up_type_add-element');
+
+// open pop-up buttons
+const openEditPopupButton = profile.querySelector('.profile-info__edit-button');
+const openPopupAddElement = profile.querySelector('.profile__add-button');
+
+// close pop-up buttons
+const closeEditPopupButton = popupEdit.querySelector('.pop-up__close-button');
+const closePopupAddElement = popupAddElement.querySelector('.pop-up__close-button');
+
+
+const profileName = profile.querySelector('.profile-info__name');
+const profileAbout = profile.querySelector('.profile-info__about');
+const popupName = popupEdit.querySelector('#name');
+const popupAbout = popupEdit.querySelector('#about');
+
+// submit pop-ups
+const profileEditForm = popupEdit.querySelector('.pop-up__container');
+const cardEditForm = popupAddElement.querySelector('.pop-up__container');
+
 const list = document.querySelector('.photo-grid__list');
 
 
@@ -37,9 +52,8 @@ const initialCards = [{
     }
 ];
 
-//Функция добавления карточек на страницу
-
-const addElement = initialCards.forEach(function (item) {
+// Add cards
+function createCard(item) {
     const elementTemplate = document.querySelector('.element-template').content.querySelector('.element')
     const element = elementTemplate.cloneNode(true);
     const elementTitle = element.querySelector('.element__title');
@@ -48,31 +62,66 @@ const addElement = initialCards.forEach(function (item) {
     elementImage.src = item.link;
     elementImage.alt = item.name;
 
-    console.log(element);
+    return element
+};
 
-    list.append(element);
-
+initialCards.forEach(function (item) {
+    list.append(createCard(item));
 });
 
-function openInfoPopup() {
-    popupName.value = profileName.textContent;
-    popupAbout.value = profileAbout.textContent;
-    popup.classList.add('pop-up_opened'); // открываем форму редактирования профиля с предзаполненными данными
+// Open pop-up
+function openPopup(popup) {
+    popup.classList.add('pop-up_opened');
 }
 
-function closeInfoPopup() {
-    popup.classList.remove('pop-up_opened') // закрываем форму редактирования профиля
+// Close pop-up
+function closePopup(popup) {
+    popup.classList.remove('pop-up_opened')
 }
 
+// Apply profile edit form data
 function formSubmitHandler(evt) {
     profileName.textContent = popupName.value;
     profileAbout.textContent = popupAbout.value;
     evt.preventDefault();
 
-    closeInfoPopup(); //применяем данные из формы редактирования профиля
+    closePopup(popupEdit);
 }
 
+// Create card
+function addCardSubmitHandler(evt) {
+    const cardName = popupAddElement.querySelector('#name').value;
+    const imageLink = popupAddElement.querySelector('#about').value;
 
-editButton.addEventListener('click', openInfoPopup); // слушатель для кнопки редактирования профиля
-closeButton.addEventListener('click', closeInfoPopup); // слушатель для кнопки закрыть форму редактирования профиля
-formElement.addEventListener('submit', formSubmitHandler); // слушатель для кнопки сохранить формы редактирования профиля
+    const cardObject = {
+        name: cardName,
+        link: imageLink
+    };
+
+    evt.preventDefault();
+
+    list.prepend(createCard(cardObject));
+    closePopup(popupAddElement);
+}
+
+// слушатели для кнопок открыть попап
+openEditPopupButton.addEventListener('click', function () {
+    popupName.value = profileName.textContent;
+    popupAbout.value = profileAbout.textContent;
+    openPopup(popupEdit)
+}); 
+openPopupAddElement.addEventListener('click', function () {
+    openPopup(popupAddElement)
+});
+
+// слушатели для кнопок закрыть попап
+closeEditPopupButton.addEventListener('click', function () {
+    closePopup(popupEdit)
+}); 
+closePopupAddElement.addEventListener('click', function () {
+    closePopup(popupAddElement)
+});
+
+// слушатели для кнопок сохранить
+profileEditForm.addEventListener('submit', formSubmitHandler); // слушатель для кнопки сохранить формы редактирования профиля
+cardEditForm.addEventListener('submit', addCardSubmitHandler);
