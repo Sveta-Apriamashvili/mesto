@@ -19,6 +19,3 @@ padding-left: 32px;
     cursor: pointer;
 }
 
-.element__like:active {
-    background-image: url(../../../images/like-active.svg);
-}
