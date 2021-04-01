@@ -41,7 +41,7 @@
                         <input type="text" class="pop-up__item" id="name" name="name">
                         <input type="text" class="pop-up__item" id="about" name="about">
                     </div>
-                        <button type="submit" class="pop-up__submit-button">Сохранить</button>
+                    <button type="submit" class="pop-up__submit-button">Сохранить</button>
                 </form>
             </div>
         </div>
@@ -51,11 +51,21 @@
                 <h3 class=" pop-up__title">Новое место</h3>
                 <form class="pop-up__admin">
                     <div class="pop-up__input-container">
-                        <input type="text" class="pop-up__item" id="name" name="name" placeholder="Название">
-                        <input type="text" class="pop-up__item" id="about" name="about" placeholder="Ссылка на картинку">
+                        <input type="text" class="pop-up__item" id="cardname" name="name" placeholder="Название">
+                        <input type="text" class="pop-up__item" id="image" name="about"
+                            placeholder="Ссылка на картинку">
                     </div>
-                        <button type="submit" class="pop-up__submit-button">Сохранить</button>
+                    <button type="submit" class="pop-up__submit-button">Сохранить</button>
                 </form>
+            </div>
+        </div>
+        <div class="pop-up pop-up_type_image">
+            <div class="pop-up__container pop-up__container_type_image">
+                <button class="pop-up__close-button" type="button" aria-label="close"></button>
+                <figure class="pop-up__figure">
+                    <img src="#" alt="#" class="pop-up__image">
+                    <figcaption class="pop-up__image-caption"></figcaption>
+                </figure>
             </div>
         </div>
         <template class="element-template">

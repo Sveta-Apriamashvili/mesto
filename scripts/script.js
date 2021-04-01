@@ -4,6 +4,7 @@ const profile = container.querySelector('.profile');
 // pop-ups
 const popupEdit = container.querySelector('.pop-up_type_edit');
 const popupAddElement = container.querySelector('.pop-up_type_add-element');
+const popupImage = container.querySelector('.pop-up_type_image');
 
 // open pop-up buttons
 const openEditPopupButton = profile.querySelector('.profile-info__edit-button');
@@ -12,6 +13,7 @@ const openPopupAddElement = profile.querySelector('.profile__add-button');
 // close pop-up buttons
 const closeEditPopupButton = popupEdit.querySelector('.pop-up__close-button');
 const closePopupAddElement = popupAddElement.querySelector('.pop-up__close-button');
+const closePopupImage = popupImage.querySelector('.pop-up__close-button');
 
 
 const profileName = profile.querySelector('.profile-info__name');
@@ -25,6 +27,9 @@ const cardEditForm = popupAddElement.querySelector('.pop-up__container');
 
 const list = document.querySelector('.photo-grid__list');
 
+// pop-up elements
+const ImagePopupImage = popupImage.querySelector('.pop-up__image');
+const CaptionPopupImage = popupImage.querySelector('.pop-up__image-caption');
 
 const initialCards = [{
         name: 'Архыз',
@@ -52,11 +57,6 @@ const initialCards = [{
     }
 ];
 
-// Add or remove like
-function like(like) {
-    like.classList.toggle('element__like_active');
-}
-
 // Add cards
 function createCard(item) {
     const elementTemplate = document.querySelector('.element-template').content.querySelector('.element')
@@ -77,6 +77,10 @@ function createCard(item) {
         removeElement(element);
     })
 
+    elementImage.addEventListener('click', function () {
+        imageClickHandler(item);
+    });
+    
     return element
 };
 
@@ -84,9 +88,22 @@ initialCards.forEach(function (item) {
     list.append(createCard(item));
 });
 
+// Add or remove like
+function like(like) {
+    like.classList.toggle('element__like_active');
+}
+
 // Remove card
 function removeElement(element) {
     element.remove();
+}
+
+// Open image
+function imageClickHandler (item) {
+    ImagePopupImage.src = item.link;
+    ImagePopupImage.alt = item.name;
+    CaptionPopupImage.textContent = item.name;
+    openPopup(popupImage);
 }
 
 // Open pop-up
@@ -110,8 +127,8 @@ function formSubmitHandler(evt) {
 
 // Create new card
 function addCardSubmitHandler(evt) {
-    const cardName = popupAddElement.querySelector('#name').value;
-    const imageLink = popupAddElement.querySelector('#about').value;
+    const cardName = popupAddElement.querySelector('#cardname').value;
+    const imageLink = popupAddElement.querySelector('#image').value;
 
     const cardObject = {
         name: cardName,
@@ -124,7 +141,7 @@ function addCardSubmitHandler(evt) {
     closePopup(popupAddElement);
 }
 
-// слушатели для кнопок открыть попап
+// Listener open pop-up
 openEditPopupButton.addEventListener('click', function () {
     popupName.value = profileName.textContent;
     popupAbout.value = profileAbout.textContent;
@@ -134,14 +151,17 @@ openPopupAddElement.addEventListener('click', function () {
     openPopup(popupAddElement)
 });
 
-// слушатели для кнопок закрыть попап
+// Listener close pop-up
 closeEditPopupButton.addEventListener('click', function () {
     closePopup(popupEdit)
 });
 closePopupAddElement.addEventListener('click', function () {
     closePopup(popupAddElement)
 });
+closePopupImage.addEventListener('click', function () {
+    closePopup(popupImage)
+});
 
-// слушатели для кнопок сохранить
-profileEditForm.addEventListener('submit', formSubmitHandler); // слушатель для кнопки сохранить формы редактирования профиля
+// Listener submit buttons
+profileEditForm.addEventListener('submit', formSubmitHandler); 
 cardEditForm.addEventListener('submit', addCardSubmitHandler);
