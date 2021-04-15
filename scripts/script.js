@@ -84,7 +84,8 @@ function openPopup(popup) {
 
 // Close pop-up
 function closePopup(popup) {
-    popup.classList.remove('pop-up_opened')
+    popup.classList.remove('pop-up_opened');
+    cardEditForm.reset();
 }
 
 // Apply profile edit form data

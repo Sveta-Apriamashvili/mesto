@@ -15,6 +15,14 @@
     cursor: pointer;
 }
 
+.pop-up__submit-button:disabled {
+    opacity: 0.2;
+    color: black;
+    background-color: transparent;
+    border: 1px;
+    border-color: black;
+}
+
 @media screen and (max-width: 600px) {
     .pop-up__submit-button {
         width: calc(100% - 44px);
