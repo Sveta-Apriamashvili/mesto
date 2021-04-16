@@ -49,19 +49,20 @@ const setEventListeners = (formElement, settings) => {
 
 };
 
+// Public API
+
+// Enable validation on forms
 const enableValidation = (settings) => {
     const formList = Array.from(document.querySelectorAll(settings.formSelector));
     formList.forEach((formElement) => {
         setEventListeners(formElement, settings);
     });
-
 };
 
-enableValidation({
-    formSelector: '.pop-up__admin',
-    inputSelector: '.pop-up__item',
-    submitButtonSelector: '.pop-up__submit-button',
-    inactiveButtonClass: 'pop-up__submit-button_disabled',
-    inputErrorClass: 'pop-up__input-container_type_error',
-    errorClass: 'pop-up__error_active'
-});
+// Hide all error messages on the given form
+const resetErrorMessages = (formElement, settings) => {
+    const inputList = Array.from(formElement.querySelectorAll(settings.inputSelector));
+    inputList.forEach(inputElement => {
+        hideInputError(formElement, inputElement, settings)
+    })
+}

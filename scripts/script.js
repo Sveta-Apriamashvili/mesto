@@ -79,13 +79,23 @@ function handlePreviewPicture(item) {
 
 // Open pop-up
 function openPopup(popup) {
+    function handleESCButtonPress(event) {
+        if (event.key === "Escape") {
+            closePopup(popup)
+        }
+        document.removeEventListener('keyup', handleESCButtonPress)
+    }
+    
     popup.classList.add('pop-up_opened');
+    document.addEventListener('keyup', handleESCButtonPress)
 }
 
 // Close pop-up
 function closePopup(popup) {
     popup.classList.remove('pop-up_opened');
-    cardEditForm.reset();
+    const form = popup.querySelector(form_settings.formSelector)
+    form.reset();
+    resetErrorMessages(form, form_settings)
 }
 
 // Apply profile edit form data
@@ -125,3 +135,6 @@ closePopupImage.addEventListener('click', () => closePopup(popupImage));
 // Listener submit buttons
 profileEditForm.addEventListener('submit', handleFormSubmit);
 cardEditForm.addEventListener('submit', handleAddCard);
+
+// Enable forms validation
+enableValidation(form_settings);
