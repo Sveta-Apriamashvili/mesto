@@ -6,6 +6,11 @@ const profile = container.querySelector('.profile');
 const popupEdit = container.querySelector('.pop-up_type_edit');
 const popupAddElement = container.querySelector('.pop-up_type_add-element');
 const popupImage = container.querySelector('.pop-up_type_image');
+const popupList = [
+    popupEdit,
+    popupAddElement,
+    popupImage,
+]
 
 // open pop-up buttons
 const openEditPopupButton = profile.querySelector('.profile-info__edit-button');
@@ -82,8 +87,8 @@ function openPopup(popup) {
     function handleESCButtonPress(event) {
         if (event.key === "Escape") {
             closePopup(popup)
+            document.removeEventListener('keyup', handleESCButtonPress)
         }
-        document.removeEventListener('keyup', handleESCButtonPress)
     }
     
     popup.classList.add('pop-up_opened');
@@ -93,9 +98,11 @@ function openPopup(popup) {
 // Close pop-up
 function closePopup(popup) {
     popup.classList.remove('pop-up_opened');
-    const form = popup.querySelector(form_settings.formSelector)
-    form.reset();
-    resetErrorMessages(form, form_settings)
+    const form = popup.querySelector(form_settings.formSelector);
+    if (form) {
+        form.reset();
+        resetErrorMessages(form, form_settings);
+    }
 }
 
 // Apply profile edit form data
@@ -131,6 +138,14 @@ openPopupAddElement.addEventListener('click', () => openPopup(popupAddElement));
 closeEditPopupButton.addEventListener('click', () => closePopup(popupEdit));
 closePopupAddElement.addEventListener('click', () => closePopup(popupAddElement));
 closePopupImage.addEventListener('click', () => closePopup(popupImage));
+
+popupList.forEach( (overlay) => {
+    overlay.addEventListener('click', (event) => {
+        if (event.target === event.currentTarget) {
+            closePopup(overlay)
+        }
+    });
+});
 
 // Listener submit buttons
 profileEditForm.addEventListener('submit', handleFormSubmit);
