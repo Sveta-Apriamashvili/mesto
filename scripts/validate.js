@@ -2,12 +2,15 @@ const showInputError = (formElement, inputElement, errorMessage, settings) => {
     const errorElement = formElement.querySelector(`#${inputElement.id}-error`)
     errorElement.textContent = errorMessage;
     errorElement.classList.add(settings.errorClass);
+    inputElement.classList.add(settings.inputErrorClass);
 }
 
 const hideInputError = (formElement, inputElement, settings) => {
     const errorElement = formElement.querySelector(`#${inputElement.id}-error`)
     errorElement.textContent = '';
     errorElement.classList.remove(settings.errorClass);
+    inputElement.classList.remove(settings.inputErrorClass);
+
 }
 
 const checkInputValidity = (formElement, inputElement, settings) => {

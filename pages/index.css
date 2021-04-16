@@ -22,6 +22,7 @@
 @import url(../blocks/pop-up/__admin/pop-up__admin.css);
 @import url(../blocks/pop-up/__input-container/pop-up__input-container.css);
 @import url(../blocks/pop-up/__item/pop-up__item.css);
+@import url(../blocks/pop-up/__item/_type/pop-up__item_type_error.css);
 @import url(../blocks/pop-up/__submit-button/pop-up__submit-button.css);
 @import url(../blocks/pop-up/__submit-button/_inactive/pop-up__submit-button.css);
 @import url(../blocks/profile/__add-button/profile__add-button.css);
