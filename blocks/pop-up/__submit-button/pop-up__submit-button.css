@@ -19,8 +19,8 @@
     opacity: 0.2;
     color: black;
     background-color: transparent;
-    border: 1px;
-    border-color: black;
+    border: 1px solid black;
+    cursor: default;
 }
 
 @media screen and (max-width: 600px) {

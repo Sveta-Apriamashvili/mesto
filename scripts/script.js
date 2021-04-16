@@ -90,7 +90,7 @@ function openPopup(popup) {
             document.removeEventListener('keyup', handleESCButtonPress)
         }
     }
-    
+
     popup.classList.add('pop-up_opened');
     document.addEventListener('keyup', handleESCButtonPress)
 }
@@ -139,7 +139,7 @@ closeEditPopupButton.addEventListener('click', () => closePopup(popupEdit));
 closePopupAddElement.addEventListener('click', () => closePopup(popupAddElement));
 closePopupImage.addEventListener('click', () => closePopup(popupImage));
 
-popupList.forEach( (overlay) => {
+popupList.forEach((overlay) => {
     overlay.addEventListener('click', (event) => {
         if (event.target === event.currentTarget) {
             closePopup(overlay)
