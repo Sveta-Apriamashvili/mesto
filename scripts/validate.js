@@ -18,20 +18,20 @@ const checkInputValidity = (formElement, inputElement, settings) => {
 
     if (isInputNotValid) {
         const errorMessage = inputElement.validationMessage;
-        showInputError(formElement, inputElement, errorMessage, settings)
+        showInputError(formElement, inputElement, errorMessage, settings);
     } else {
-        hideInputError(formElement, inputElement, settings)
+        hideInputError(formElement, inputElement, settings);
     }
 };
 
-const toggleButtonState = (inputList, buttonElement) => {
+const toggleButtonState = (inputList, buttonElement, settings) => {
     const isNotValid = inputList.some((inputElement) => !inputElement.validity.valid);
     if (isNotValid) {
         buttonElement.setAttribute('disabled', true);
-        buttonElement.classList.add('.pop-up__submit-button_inactive');
+        buttonElement.classList.add(settings.inactiveButtonClass);
     } else {
         buttonElement.removeAttribute('disabled');
-        buttonElement.classList.remove('.pop-up__submit-button_inactive');
+        buttonElement.classList.remove(settings.inactiveButtonClass);
     }
 };
 
@@ -46,7 +46,7 @@ const setEventListeners = (formElement, settings) => {
     inputList.forEach(inputElement => {
         inputElement.addEventListener('input', (event) => {
             checkInputValidity(formElement, inputElement, settings);
-            toggleButtonState(inputList, buttonElement);
+            toggleButtonState(inputList, buttonElement, settings);
         })
     })
 
@@ -63,9 +63,12 @@ const enableValidation = (settings) => {
 };
 
 // Hide all error messages on the given form
-const resetErrorMessages = (formElement, settings) => {
+const resetFormState = (formElement, settings) => {
     const inputList = Array.from(formElement.querySelectorAll(settings.inputSelector));
+    const buttonElement = formElement.querySelector(settings.submitButtonSelector);
+
     inputList.forEach(inputElement => {
-        hideInputError(formElement, inputElement, settings)
+        hideInputError(formElement, inputElement, settings);
+        toggleButtonState(inputList, buttonElement, settings);
     })
 }

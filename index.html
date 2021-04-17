@@ -21,9 +21,9 @@
                         <h1 class="profile-info__name">Жак-Ив Кусто</h1>
                         <p class="profile-info__about">Исследователь океана</p>
                     </div>
-                    <button class="profile-info__edit-button" type="button" aria-label="edit"></button>
+                    <button class="profile-info__edit-button" type="button" aria-label="редактировать"></button>
                 </div>
-                <button class="profile__add-button" type="button" aria-label="add"></button>
+                <button class="profile__add-button" type="button" aria-label="добавить"></button>
             </section>
             <section class="photo-grid">
                 <ul class="photo-grid__list"></ul>
@@ -34,9 +34,9 @@
         </footer>
         <div class="pop-up pop-up_type_edit">
             <div class="pop-up__container">
-                <button class="pop-up__close-button" type="button" aria-label="close"></button>
+                <button class="pop-up__close-button" type="button" aria-label="закрыть"></button>
                 <h3 class=" pop-up__title">Редактировать профиль</h3>
-                <form class="pop-up__admin" novalidate>
+                <form class="pop-up__admin" name="edit-profile" novalidate>
                     <div class="pop-up__input-container">
                         <input type="text" class="pop-up__item" id="name" name="name"
                             placeholder="Имя" minlength="2" maxlength="40" required>
@@ -51,9 +51,9 @@
         </div>
         <div class="pop-up pop-up_type_add-element">
             <div class="pop-up__container">
-                <button class="pop-up__close-button" type="button" aria-label="close"></button>
+                <button class="pop-up__close-button" type="button" aria-label="закрыть"></button>
                 <h3 class=" pop-up__title">Новое место</h3>
-                <form class="pop-up__admin" novalidate>
+                <form class="pop-up__admin" name="add-image" novalidate>
                     <div class="pop-up__input-container">
                         <input type="text" class="pop-up__item" id="cardname"
                             name="name" placeholder="Название" minlength="2" maxlength="200" required>
@@ -68,7 +68,7 @@
         </div>
         <div class="pop-up pop-up_type_image">
             <div class="pop-up__container pop-up__container_type_image">
-                <button class="pop-up__close-button" type="button" aria-label="close"></button>
+                <button class="pop-up__close-button" type="button" aria-label="закрыть"></button>
                 <figure class="pop-up__figure">
                     <img src="#" alt="#" class="pop-up__image">
                     <figcaption class="pop-up__image-caption"></figcaption>
@@ -77,16 +77,16 @@
         </div>
         <template class="element-template">
             <li class="element">
-                <button class="element__bin" type="button" aria-label="bin"></button>
+                <button class="element__bin" type="button" aria-label="удалить"></button>
                 <img class="element__image" src="#" alt="">
                 <div class="element__text-container">
                     <h3 class="element__title"></h3>
-                    <button class="element__like" type="button" aria-label="like"></button>
+                    <button class="element__like" type="button" aria-label="нравится"></button>
                 </div>
             </li>
         </template>
     </div>
-    <script src="./scripts/form-settings.js"></script>
+    <script src="./scripts/constants.js"></script>
     <script src="./scripts/validate.js"></script>
     <script src="./scripts/initial-cards.js"></script>
     <script src="./scripts/script.js"></script>
