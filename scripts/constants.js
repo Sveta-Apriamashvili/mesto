@@ -1,4 +1,4 @@
- const formSettings = {
+ export const formSettings = {
     formSelector: '.pop-up__admin',
     inputSelector: '.pop-up__item',
     submitButtonSelector: '.pop-up__submit-button',

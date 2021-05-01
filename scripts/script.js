@@ -1,5 +1,8 @@
-import Card from './Card.js'
 import {openPopup, closePopup, popupEdit, popupAddElement} from './popup-utils.js'
+import {initialCards} from './initial-cards.js'
+import {formSettings} from './constants.js'
+import Card from './Card.js'
+import FormValidator from './FormValidator.js'
 
 const container = document.querySelector('.page__container');
 const profile = container.querySelector('.profile');
@@ -58,17 +61,14 @@ openEditPopupButton.addEventListener('click', function () {
     popupName.value = profileName.textContent;
     popupAbout.value = profileAbout.textContent;
     openPopup(popupEdit);
-    resetFormState(profileEditForm, formSettings);
+    new FormValidator(formSettings, profileEditForm).enableValidation()
 });
 openPopupAddElement.addEventListener('click', function () {
     openPopup(popupAddElement);
     cardEditForm.reset();
-    resetFormState(cardEditForm, formSettings);
+    new FormValidator(formSettings, cardEditForm).enableValidation()
 });
 
 // Listener submit buttons
 profileEditForm.addEventListener('submit', handleFormSubmit);
 cardEditForm.addEventListener('submit', handleAddCard);
-
-// Enable forms validation
-enableValidation(formSettings);

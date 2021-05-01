@@ -1,3 +1,5 @@
+import {formSettings} from './constants.js'
+
 // pop-ups
 export const popupEdit = document.querySelector('.pop-up_type_edit');
 export const popupAddElement = document.querySelector('.pop-up_type_add-element');
