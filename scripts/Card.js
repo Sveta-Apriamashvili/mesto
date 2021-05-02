@@ -4,16 +4,15 @@ export default class Card {
     constructor(elementTitle, elementLink, templateSelector) {
         this._elementTitle = elementTitle;
         this._elementLink = elementLink;
-        this._templateSelector = templateSelector;
+        this._element = this._getTemplate(templateSelector);
         this._captionPopupImage = popupImage.querySelector('.pop-up__image-caption');
         this._imagePopupImage = popupImage.querySelector('.pop-up__image');
-
-
+        this._elementImage = this._element.querySelector('.element__image');
     }
 
-    _getTemplate() {
+    _getTemplate(selector) {
         const cardElement = document
-            .querySelector(this._templateSelector)
+            .querySelector(selector)
             .content
             .querySelector('.element')
             .cloneNode(true);
@@ -21,33 +20,31 @@ export default class Card {
         return cardElement
     }
 
-    _assignData(element) {
-        element.querySelector('.element__title').textContent = this._elementTitle;
-        const elementImage = element.querySelector('.element__image');
-        elementImage.src = this._elementLink;
-        elementImage.alt = this._elementTitle;
+    _assignData() {
+        this._element.querySelector('.element__title').textContent = this._elementTitle;
+        this._elementImage.src = this._elementLink;
+        this._elementImage.alt = this._elementTitle;
     }
     
     _handleLikeIcon(like) {
         like.classList.toggle('element__like_active');
     }
     
-    _assignListeners(element) {
-        const elementLike = element.querySelector('.element__like');
+    _assignListeners() {
+        const elementLike = this._element.querySelector('.element__like');
         elementLike.addEventListener('click', () => this._handleLikeIcon(elementLike))
 
-        const removeButton = element.querySelector('.element__bin');
-        removeButton.addEventListener('click', () => this._handleDeleteCard(element))
+        const removeButton = this._element.querySelector('.element__bin');
+        removeButton.addEventListener('click', () => this._handleDeleteCard(this._element))
 
-        element.addEventListener('click', () => this._handlePreviewPicture());
+        this._elementImage.addEventListener('click', () => this._handlePreviewPicture());
     }
 
     generateCard() {
-        const template = this._getTemplate()
-        this._assignData(template)
-        this._assignListeners(template)
+        this._assignData()
+        this._assignListeners()
 
-        return template
+        return this._element
     }
 
     _handleDeleteCard(element) {
