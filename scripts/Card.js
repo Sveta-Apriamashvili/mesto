@@ -5,6 +5,10 @@ export default class Card {
         this._elementTitle = elementTitle;
         this._elementLink = elementLink;
         this._templateSelector = templateSelector;
+        this._captionPopupImage = popupImage.querySelector('.pop-up__image-caption');
+        this._imagePopupImage = popupImage.querySelector('.pop-up__image');
+
+
     }
 
     _getTemplate() {
@@ -52,12 +56,9 @@ export default class Card {
 
     // Open image
     _handlePreviewPicture() {
-        const imagePopupImage = popupImage.querySelector('.pop-up__image');
-        const captionPopupImage = popupImage.querySelector('.pop-up__image-caption');
-        
-        imagePopupImage.src = this._elementLink;
-        imagePopupImage.alt = this._elementTitle;
-        captionPopupImage.textContent = this._elementTitle;
+        this._imagePopupImage.src = this._elementLink;
+        this._imagePopupImage.alt = this._elementTitle;
+        this._captionPopupImage.textContent = this._elementTitle;
         openPopup(popupImage);
     }
 }

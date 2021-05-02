@@ -25,6 +25,7 @@ const popupAbout = popupEdit.querySelector('#about');
 const profileEditForm = popupEdit.querySelector('.pop-up__admin');
 const cardEditForm = popupAddElement.querySelector('.pop-up__admin');
 
+
 const list = document.querySelector('.photo-grid__list');
 
 // Add cards
@@ -61,14 +62,20 @@ openEditPopupButton.addEventListener('click', function () {
     popupName.value = profileName.textContent;
     popupAbout.value = profileAbout.textContent;
     openPopup(popupEdit);
-    new FormValidator(formSettings, profileEditForm).enableValidation()
+    profileEditFormValidator.resetFormState()
 });
 openPopupAddElement.addEventListener('click', function () {
     openPopup(popupAddElement);
     cardEditForm.reset();
-    new FormValidator(formSettings, cardEditForm).enableValidation()
+    cardEditFormValidator.resetFormState()
 });
 
 // Listener submit buttons
 profileEditForm.addEventListener('submit', handleFormSubmit);
 cardEditForm.addEventListener('submit', handleAddCard);
+
+
+const profileEditFormValidator = new FormValidator(formSettings, profileEditForm)
+const cardEditFormValidator = new FormValidator(formSettings, cardEditForm)
+profileEditFormValidator.enableValidation()
+cardEditFormValidator.enableValidation()
