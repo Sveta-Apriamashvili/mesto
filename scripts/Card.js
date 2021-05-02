@@ -1,12 +1,11 @@
 import {openPopup, popupImage} from './popup-utils.js'
+import {captionPopupImage, imagePopupImage } from './constants.js';
 
 export default class Card {
     constructor(elementTitle, elementLink, templateSelector) {
         this._elementTitle = elementTitle;
         this._elementLink = elementLink;
         this._element = this._getTemplate(templateSelector);
-        this._captionPopupImage = popupImage.querySelector('.pop-up__image-caption');
-        this._imagePopupImage = popupImage.querySelector('.pop-up__image');
         this._elementImage = this._element.querySelector('.element__image');
     }
 
@@ -53,9 +52,9 @@ export default class Card {
 
     // Open image
     _handlePreviewPicture() {
-        this._imagePopupImage.src = this._elementLink;
-        this._imagePopupImage.alt = this._elementTitle;
-        this._captionPopupImage.textContent = this._elementTitle;
+        imagePopupImage.src = this._elementLink;
+        imagePopupImage.alt = this._elementTitle;
+        captionPopupImage.textContent = this._elementTitle;
         openPopup(popupImage);
     }
 }

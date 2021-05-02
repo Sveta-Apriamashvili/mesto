@@ -1,3 +1,6 @@
+export const captionPopupImage = document.querySelector('.pop-up__image-caption'); 
+export const imagePopupImage = document.querySelector('.pop-up__image'); 
+ 
  export const formSettings = {
     formSelector: '.pop-up__admin',
     inputSelector: '.pop-up__item',
