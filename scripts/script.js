@@ -1,8 +1,18 @@
-import {openPopup, closePopup, popupEdit, popupAddElement} from './popup-utils.js'
-import {initialCards} from './initial-cards.js'
-import {formSettings} from './constants.js'
+import {
+    openPopup,
+    closePopup,
+    popupEdit,
+    popupAddElement
+} from './popup-utils.js'
+import {
+    initialCards
+} from './initial-cards.js'
+import {
+    formSettings
+} from './constants.js'
 import Card from './Card.js'
 import FormValidator from './FormValidator.js'
+import Section from './components/Section.js'
 
 const container = document.querySelector('.page__container');
 const profile = container.querySelector('.profile');
@@ -26,7 +36,16 @@ const profileEditForm = popupEdit.querySelector('.pop-up__admin');
 const cardEditForm = popupAddElement.querySelector('.pop-up__admin');
 
 
-const list = document.querySelector('.photo-grid__list');
+const cardSection = new Section({
+        items: initialCards,
+        renderer: (item) => {
+            const cardElement = createCard(item)
+            cardSection.addItem(cardElement);
+        }
+    }, '.photo-grid__list'
+)
+cardSection.renderItems()
+// document.querySelector('.photo-grid__list');
 
 // Add cards
 function createCard(item) {
@@ -34,9 +53,9 @@ function createCard(item) {
     return card.generateCard()
 };
 
-initialCards.forEach(function (item) {
-    list.append(createCard(item));
-});
+// initialCards.forEach(function (item) {
+//     list.append(createCard(item));
+// });
 
 // Apply profile edit form data
 function handleFormSubmit(evt) {
@@ -50,7 +69,7 @@ function handleFormSubmit(evt) {
 function handleAddCard(evt) {
     evt.preventDefault();
 
-    list.prepend(createCard({
+    cardSection.prependItem(createCard({
         name: cardName.value,
         link: imageLink.value
     }));
