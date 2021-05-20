@@ -1,12 +1,10 @@
-import {openPopup, popupImage} from './popup-utils.js'
-import {captionPopupImage, imagePopupImage } from './constants.js';
-
 export default class Card {
-    constructor(elementTitle, elementLink, templateSelector) {
+    constructor(elementTitle, elementLink, templateSelector, handleCardClick) {
         this._elementTitle = elementTitle;
         this._elementLink = elementLink;
         this._element = this._getTemplate(templateSelector);
         this._elementImage = this._element.querySelector('.element__image');
+        this._handleCardClick = handleCardClick
     }
 
     _getTemplate(selector) {
@@ -36,7 +34,12 @@ export default class Card {
         const removeButton = this._element.querySelector('.element__bin');
         removeButton.addEventListener('click', () => this._handleDeleteCard(this._element))
 
-        this._elementImage.addEventListener('click', () => this._handlePreviewPicture());
+        this._elementImage.addEventListener('click', () => {
+            this._handleCardClick({
+                url: this._elementLink,
+                title: this._elementTitle
+            });
+        });
     }
 
     generateCard() {
@@ -48,14 +51,6 @@ export default class Card {
 
     _handleDeleteCard(element) {
         element.remove();
-    }
-
-    // Open image
-    _handlePreviewPicture() {
-        imagePopupImage.src = this._elementLink;
-        imagePopupImage.alt = this._elementTitle;
-        captionPopupImage.textContent = this._elementTitle;
-        openPopup(popupImage);
     }
 }
 
