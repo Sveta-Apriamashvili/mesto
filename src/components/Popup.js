@@ -1,4 +1,4 @@
-import {formSettings, popupSelectors} from '../constants.js'
+import {formSettings, popupSelectors} from '../scripts/constants.js'
 
 export default class Popup {
 constructor (popupSelector) {

@@ -1,19 +1,21 @@
-import PopupWithForm from './components/PopupWithForm.js'
-import PopupWithImage from './components/PopupWithImage.js'
+import './index.css'
+
+import PopupWithForm from '../components/PopupWithForm.js'
+import PopupWithImage from '../components/PopupWithImage.js'
 import {
     initialCards
-} from './initial-cards.js'
+} from '../scripts/initial-cards.js'
 import {
     formSettings,
     pageSelectors,
     profileSelectors,
     popupSelectors,
     cardSelectors
-} from './constants.js'
-import Card from './components/Card.js'
-import FormValidator from './FormValidator.js'
-import Section from './components/Section.js'
-import UserInfo from './components/UserInfo.js'
+} from '../scripts/constants.js'
+import Card from '../components/Card.js'
+import FormValidator from '../components/FormValidator.js'
+import Section from '../components/Section.js'
+import UserInfo from '../components/UserInfo.js'
 
 const container = document.querySelector(pageSelectors.container);
 const profile = container.querySelector(profileSelectors.main);
