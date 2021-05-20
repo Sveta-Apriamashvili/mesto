@@ -5,18 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mesto</title>
-    <link rel="stylesheet" href="./pages/index.css">
 </head>
 
 <body class="page">
     <div class="page__container">
         <header class="header">
-            <img class="logo" src="./images/logo.svg" alt="лого">
+            <img class="logo" src="<%=require('./images/logo.svg')%>" alt="лого">
         </header>
         <main class="content">
             <section class="profile">
                 <div class="profile-info">
-                    <img class="profile-info__avatar" src="./images/avatar.jpg" alt="аватарка">
+                    <img class="profile-info__avatar" src="<%=require('./images/avatar.jpg')%>" alt="аватарка">
                     <div class="profile-info__info">
                         <h1 class="profile-info__name">Жак-Ив Кусто</h1>
                         <p class="profile-info__about">Исследователь океана</p>
@@ -86,12 +85,6 @@
             </li>
         </template>
     </div>
-    <!-- <script type="module" src="./scripts/constants.js"></script>
-    <script type="module" src="./scripts/initial-cards.js"></script>
-    <script type="module" src="./scripts/popup-utils.js"></script>
-    <script type="module" src="./scripts/Card.js"></script>
-    <script type="module" src="./scripts/FormValidator.js"></script> -->
-    <script type="module" src="./scripts/script.js"></script>
 </body>
 
 </html>
