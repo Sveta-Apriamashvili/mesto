@@ -8,6 +8,7 @@ export const profileSelectors = {
     addButton: '.profile__add-button',
     nameLabel: '.profile-info__name',
     aboutLabel: '.profile-info__about',
+    avatarImage: '.profile-info__avatar'
 }
 
 export const formSettings = {

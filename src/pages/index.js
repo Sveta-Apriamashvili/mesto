@@ -1,10 +1,8 @@
 import './index.css'
+import { api } from '../components/Api.js'
 
 import PopupWithForm from '../components/PopupWithForm.js'
 import PopupWithImage from '../components/PopupWithImage.js'
-import {
-    initialCards
-} from '../scripts/initial-cards.js'
 import {
     formSettings,
     pageSelectors,
@@ -47,16 +45,27 @@ cardEditFormValidator.enableValidation()
 // User Info
 const userInfo = new UserInfo({
     usernameSelector: profileSelectors.nameLabel, 
-    aboutSelector: profileSelectors.aboutLabel
+    aboutSelector: profileSelectors.aboutLabel,
+    avatarSelector: profileSelectors.avatarImage
 });
+
+api.getUserInfo().then((data) => {
+    userInfo.setUserInfo({
+        username: data.name, 
+        about: data.about,
+        avatar: data.avatar
+    });
+})
 
 const userNameInput = profileEditPopup.form.querySelector('#name')
 const userAboutInput = profileEditPopup.form.querySelector('#about')
 
 
 // Cards
-const cardSection = new Section({
-        items: initialCards,
+let cardSection;
+api.getInitialCards().then((data) => {
+    cardSection = new Section({
+        items: data,
         renderer: (item) => {
             const cardElement = createCard(item)
             cardSection.addItem(cardElement);
@@ -65,6 +74,8 @@ const cardSection = new Section({
     cardSelectors.grid
 )
 cardSection.renderItems()
+})
+
 
 // Add cards
 function createCard(item) {
@@ -79,19 +90,27 @@ function createCard(item) {
 
 // Apply profile edit form data
 function handleFormSubmit(values) {
-    userInfo.setUserInfo({
-        username: values[formSettings.nameKey], 
+    api.editUserInfo({
+        name: values[formSettings.nameKey], 
         about: values[formSettings.aboutKey]
-    });
+    }).then((data) => {
+        userInfo.setUserInfo({
+            username: data.name, 
+            about: data.about,
+            avatar: data.avatar
+        });
+    })
 }
 
 // Create new card
 function handleAddCard(values) {
-    const cardData = {
+    api.addNewCard({
         name: values[formSettings.nameKey],
         link: values[formSettings.aboutKey]
-    };
-    cardSection.prependItem(createCard(cardData));
+    }).then((data) => {
+        cardSection.prependItem(createCard(data));
+    })
+
 }
 
 function handleClickCard({url, title}) {

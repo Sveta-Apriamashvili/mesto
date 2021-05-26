@@ -1,7 +1,8 @@
 export default class UserInfo {
-    constructor({usernameSelector, aboutSelector}) {
+    constructor({usernameSelector, aboutSelector, avatarSelector}) {
         this._usernameLabel = document.querySelector(usernameSelector)
         this._aboutLabel = document.querySelector(aboutSelector)
+        this._avatarImage = document.querySelector(avatarSelector)
     }
 
     getUserInfo() {
@@ -12,8 +13,9 @@ export default class UserInfo {
         return model
     }
 
-    setUserInfo({username, about}) {
+    setUserInfo({username, about, avatar}) {
         this._usernameLabel.textContent = username
         this._aboutLabel.textContent = about
+        this._avatarImage.src = avatar
     }
 }
