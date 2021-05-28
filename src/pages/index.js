@@ -3,6 +3,7 @@ import { api } from '../components/Api.js'
 
 import PopupWithForm from '../components/PopupWithForm.js'
 import PopupWithImage from '../components/PopupWithImage.js'
+import PopupWithConfirmation from '../components/PopupWithConfirmation.js'
 import {
     formSettings,
     pageSelectors,
@@ -26,11 +27,13 @@ const openPopupAddElement = profile.querySelector(profileSelectors.addButton);
 const profileEditPopup = new PopupWithForm(popupSelectors.editProfilePopup, handleFormSubmit)
 const cardAddPopup = new PopupWithForm(popupSelectors.addElementPopup, handleAddCard)
 const imagePreviewPopup = new PopupWithImage(popupSelectors.imagePreviewPopup)
+const confirmationPopup = new PopupWithConfirmation(popupSelectors.confirmationPopup)
 
 const popupList = [
     profileEditPopup,
     cardAddPopup,
     imagePreviewPopup,
+    confirmationPopup,
 ]
 
 popupList.forEach(popup => popup.setEventListeners())
@@ -43,6 +46,7 @@ profileEditFormValidator.enableValidation()
 cardEditFormValidator.enableValidation()
 
 // User Info
+let currentUser;
 const userInfo = new UserInfo({
     usernameSelector: profileSelectors.nameLabel, 
     aboutSelector: profileSelectors.aboutLabel,
@@ -50,6 +54,7 @@ const userInfo = new UserInfo({
 });
 
 api.getUserInfo().then((data) => {
+    currentUser = data;
     userInfo.setUserInfo({
         username: data.name, 
         about: data.about,
@@ -79,11 +84,17 @@ cardSection.renderItems()
 
 // Add cards
 function createCard(item) {
+    const isEditable = item.owner._id == currentUser._id
     const card = new Card(
+        item._id,
         item.name, 
-        item.link, 
+        item.link,
+        item.likes.length, 
         cardSelectors.template, 
-        handleClickCard
+        isEditable,
+        handleClickCard,
+        handleDeleteCard,
+        handleCardLike
     )
     return card.generateCard()
 };
@@ -115,6 +126,25 @@ function handleAddCard(values) {
 
 function handleClickCard({url, title}) {
     imagePreviewPopup.open(url, title)
+}
+
+function handleDeleteCard(element, id) {
+    confirmationPopup.open(() => {
+        api.deleteCard(id)
+        element.remove()
+        confirmationPopup.close()
+    })
+}
+
+function handleCardLike(isActive, element, id) {
+    function assignLikeCount(data) {
+        element.textContent = data.likes.length
+    }
+    if (isActive) {
+api.addLike(id).then(assignLikeCount)
+    } else {
+api.deleteLike(id).then(assignLikeCount)
+    }
 }
 
 // Listener open pop-up

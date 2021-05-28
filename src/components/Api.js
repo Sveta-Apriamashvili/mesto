@@ -16,7 +16,6 @@ class Api {
                     return res.json();
                 }
 
-                // если ошибка, отклоняем промис
                 return Promise.reject(`Ошибка: ${res.status}`);
             });
     }
@@ -78,6 +77,49 @@ class Api {
                 return Promise.reject(`Ошибка: ${res.status}`);
             });
     }
+
+    deleteCard(id) {
+        const url = this._baseUrl + '/cards/' + id
+        return fetch(url, {
+            method: 'DELETE',
+            headers: this._headers,
+        })
+        .then(res => {
+            if (res.ok) {
+                return res;
+            }
+            return Promise.reject(`Ошибка: ${res.status}`);
+        });
+    }
+
+    addLike(id) {
+        const url = this._baseUrl + '/cards/likes/' + id
+        return fetch(url, {
+            method: 'PUT',
+            headers: this._headers,
+        })
+        .then(res => {
+            if (res.ok) {
+                return res.json();
+            }
+            return Promise.reject(`Ошибка: ${res.status}`);
+        });
+    }
+
+    deleteLike(id) {
+        const url = this._baseUrl + '/cards/likes/' + id
+        return fetch(url, {
+            method: 'DELETE',
+            headers: this._headers,
+        })
+        .then(res => {
+            if (res.ok) {
+                return res.json();
+            }
+            return Promise.reject(`Ошибка: ${res.status}`);
+        });
+    }
+
 }
 
 export const api = new Api({

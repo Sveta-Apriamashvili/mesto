@@ -8,6 +8,7 @@
     border: 0;
     padding: 0;
     background-color: transparent;
+    visibility: hidden;
 }
 
 .element__bin:focus{

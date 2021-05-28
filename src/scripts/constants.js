@@ -28,6 +28,7 @@ export const popupSelectors = {
     editProfilePopup: '.pop-up_type_edit',
     addElementPopup: '.pop-up_type_add-element',
     imagePreviewPopup: '.pop-up_type_image',
+    confirmationPopup: '.pop-up_type_remove-card',
 }
 
 export const cardSelectors = {
