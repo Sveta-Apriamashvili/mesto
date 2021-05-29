@@ -1,5 +1,7 @@
 import './index.css'
-import { api } from '../components/Api.js'
+import {
+    api
+} from '../components/Api.js'
 
 import PopupWithForm from '../components/PopupWithForm.js'
 import PopupWithImage from '../components/PopupWithImage.js'
@@ -28,12 +30,14 @@ const profileEditPopup = new PopupWithForm(popupSelectors.editProfilePopup, hand
 const cardAddPopup = new PopupWithForm(popupSelectors.addElementPopup, handleAddCard)
 const imagePreviewPopup = new PopupWithImage(popupSelectors.imagePreviewPopup)
 const confirmationPopup = new PopupWithConfirmation(popupSelectors.confirmationPopup)
+const avatarEditPopup = new PopupWithForm(popupSelectors.editAvatarPopup, submitNewAvatar)
 
 const popupList = [
     profileEditPopup,
     cardAddPopup,
     imagePreviewPopup,
     confirmationPopup,
+    avatarEditPopup,
 ]
 
 popupList.forEach(popup => popup.setEventListeners())
@@ -41,22 +45,29 @@ popupList.forEach(popup => popup.setEventListeners())
 // Validation
 const profileEditFormValidator = new FormValidator(formSettings, profileEditPopup.form)
 const cardEditFormValidator = new FormValidator(formSettings, cardAddPopup.form)
+const avatarEditFormValidator = new FormValidator(formSettings, avatarEditPopup.form)
 
 profileEditFormValidator.enableValidation()
 cardEditFormValidator.enableValidation()
+avatarEditFormValidator.enableValidation()
 
 // User Info
 let currentUser;
 const userInfo = new UserInfo({
-    usernameSelector: profileSelectors.nameLabel, 
+    usernameSelector: profileSelectors.nameLabel,
     aboutSelector: profileSelectors.aboutLabel,
-    avatarSelector: profileSelectors.avatarImage
+    avatarSelector: profileSelectors.avatarImage,
+    editButtonSelector: profileSelectors.avatarEditButton
+}, {
+    onClickEdit: openAvatarEditForm
 });
+
+userInfo.setEventListeners();
 
 api.getUserInfo().then((data) => {
     currentUser = data;
     userInfo.setUserInfo({
-        username: data.name, 
+        username: data.name,
         about: data.about,
         avatar: data.avatar
     });
@@ -70,28 +81,30 @@ const userAboutInput = profileEditPopup.form.querySelector('#about')
 let cardSection;
 api.getInitialCards().then((data) => {
     cardSection = new Section({
-        items: data,
-        renderer: (item) => {
-            const cardElement = createCard(item)
-            cardSection.addItem(cardElement);
-        }
-    }, 
-    cardSelectors.grid
-)
-cardSection.renderItems()
+            items: data,
+            renderer: (item) => {
+                const cardElement = createCard(item)
+                cardSection.addItem(cardElement);
+            }
+        },
+        cardSelectors.grid
+    )
+    cardSection.renderItems()
 })
 
 
 // Add cards
 function createCard(item) {
-    const isEditable = item.owner._id == currentUser._id
+    const isEditable = item.owner._id === currentUser._id
+    const isLiked = item.likes.some(owner => owner._id === currentUser._id)
     const card = new Card(
         item._id,
-        item.name, 
+        item.name,
         item.link,
-        item.likes.length, 
-        cardSelectors.template, 
+        item.likes.length,
+        cardSelectors.template,
         isEditable,
+        isLiked,
         handleClickCard,
         handleDeleteCard,
         handleCardLike
@@ -102,11 +115,12 @@ function createCard(item) {
 // Apply profile edit form data
 function handleFormSubmit(values) {
     api.editUserInfo({
-        name: values[formSettings.nameKey], 
+        name: values[formSettings.nameKey],
         about: values[formSettings.aboutKey]
     }).then((data) => {
+        profileEditPopup.close()
         userInfo.setUserInfo({
-            username: data.name, 
+            username: data.name,
             about: data.about,
             avatar: data.avatar
         });
@@ -119,12 +133,16 @@ function handleAddCard(values) {
         name: values[formSettings.nameKey],
         link: values[formSettings.aboutKey]
     }).then((data) => {
+        cardAddPopup.close()
         cardSection.prependItem(createCard(data));
     })
 
 }
 
-function handleClickCard({url, title}) {
+function handleClickCard({
+    url,
+    title
+}) {
     imagePreviewPopup.open(url, title)
 }
 
@@ -141,9 +159,9 @@ function handleCardLike(isActive, element, id) {
         element.textContent = data.likes.length
     }
     if (isActive) {
-api.addLike(id).then(assignLikeCount)
+        api.addLike(id).then(assignLikeCount)
     } else {
-api.deleteLike(id).then(assignLikeCount)
+        api.deleteLike(id).then(assignLikeCount)
     }
 }
 
@@ -160,3 +178,21 @@ openPopupAddElement.addEventListener('click', function () {
     cardAddPopup.open();
     cardEditFormValidator.resetFormState()
 });
+
+function openAvatarEditForm() {
+    avatarEditPopup.open()
+    avatarEditFormValidator.resetFormState()
+}
+
+function submitNewAvatar(values) {
+    const link = values[formSettings.aboutKey]
+    api.updateAvatar(link).then((data) => {
+        avatarEditPopup.close()
+        currentUser = data;
+        userInfo.setUserInfo({
+            username: data.name,
+            about: data.about,
+            avatar: data.avatar
+        });
+    })
+}

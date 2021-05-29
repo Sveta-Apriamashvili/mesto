@@ -16,9 +16,10 @@
             <section class="profile">
                 <div class="profile-info">
                     <img class="profile-info__avatar" src="<%=require('./images/avatar.jpg')%>" alt="аватарка">
+                    <button  class="profile-info__edit-avatar" type="button" aria-label="редактировать"></button>
                     <div class="profile-info__info">
-                        <h1 class="profile-info__name">Жак-Ив Кусто</h1>
-                        <p class="profile-info__about">Исследователь океана</p>
+                        <h1 class="profile-info__name"></h1>
+                        <p class="profile-info__about"></p>
                     </div>
                     <button class="profile-info__edit-button" type="button" aria-label="редактировать"></button>
                 </div>
@@ -48,6 +49,20 @@
                 </form>
             </div>
         </div>
+        <div class="pop-up pop-up_type_edit-avatar">
+            <div class="pop-up__container">
+                <button class="pop-up__close-button" type="button" aria-label="закрыть"></button>
+                <h3 class=" pop-up__title">Обновить аватар</h3>
+                <form class="pop-up__admin" name="edit-avatar" novalidate>
+                    <div class="pop-up__input-container">
+                        <input type="url" class="pop-up__item" id="image"
+                            name="about" placeholder="Ссылка на картинку" required>
+                        <span class="pop-up__error" id="image-error"></span>
+                    </div>
+                    <button disabled type="submit" class="pop-up__submit-button">Сохранить</button>
+                </form>
+            </div>
+        </div>
         <div class="pop-up pop-up_type_add-element">
             <div class="pop-up__container">
                 <button class="pop-up__close-button" type="button" aria-label="закрыть"></button>
@@ -61,7 +76,7 @@
                             name="about" placeholder="Ссылка на картинку" required>
                         <span class="pop-up__error" id="image-error"></span>
                     </div>
-                    <button disabled type="submit" class="pop-up__submit-button">Сохранить</button>
+                    <button disabled type="submit" class="pop-up__submit-button">Создать</button>
                 </form>
             </div>
         </div>

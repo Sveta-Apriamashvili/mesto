@@ -17,7 +17,10 @@ class Api {
                 }
 
                 return Promise.reject(`Ошибка: ${res.status}`);
-            });
+            })
+            .catch((err) => {
+                console.log(err); 
+              }); 
     }
 
     editUserInfo({
@@ -39,7 +42,31 @@ class Api {
                     return res.json();
                 }
                 return Promise.reject(`Ошибка: ${res.status}`);
-            });
+            })
+            .catch((err) => {
+                console.log(err); 
+              }); 
+    }
+
+    updateAvatar(link) {
+        const url = this._baseUrl + '/users/me/avatar'
+        return fetch(url, {
+                method: 'PATCH',
+                headers: this._headers,
+
+                body: JSON.stringify({
+                    avatar: link,
+                })
+            })
+            .then(res => {
+                if (res.ok) {
+                    return res.json();
+                }
+                return Promise.reject(`Ошибка: ${res.status}`);
+            })
+            .catch((err) => {
+                console.log(err); 
+              }); 
     }
 
     // Cards
@@ -54,7 +81,10 @@ class Api {
                     return res.json();
                 }
                 return Promise.reject(`Ошибка: ${res.status}`);
-            });
+            })
+            .catch((err) => {
+                console.log(err); 
+              }); 
     }
 
     addNewCard({
@@ -75,7 +105,10 @@ class Api {
                     return res.json();
                 }
                 return Promise.reject(`Ошибка: ${res.status}`);
-            });
+            })
+            .catch((err) => {
+                console.log(err); 
+              }); 
     }
 
     deleteCard(id) {
@@ -89,7 +122,10 @@ class Api {
                 return res;
             }
             return Promise.reject(`Ошибка: ${res.status}`);
-        });
+        })
+        .catch((err) => {
+            console.log(err); 
+          }); 
     }
 
     addLike(id) {
@@ -103,7 +139,10 @@ class Api {
                 return res.json();
             }
             return Promise.reject(`Ошибка: ${res.status}`);
-        });
+        })
+        .catch((err) => {
+            console.log(err); 
+          }); 
     }
 
     deleteLike(id) {
@@ -117,7 +156,10 @@ class Api {
                 return res.json();
             }
             return Promise.reject(`Ошибка: ${res.status}`);
-        });
+        })
+        .catch((err) => {
+            console.log(err); 
+          }); 
     }
 
 }

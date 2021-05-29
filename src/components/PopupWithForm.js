@@ -1,11 +1,15 @@
 import Popup from './Popup.js'
-import { formSettings } from '../scripts/constants.js'
+import {
+    formSettings
+} from '../scripts/constants.js'
 
 export default class PopupWithForm extends Popup {
     constructor(popupSelector, onFormSubmit) {
         super(popupSelector)
         this._onFormSubmit = onFormSubmit
         this.form = this.popup.querySelector('.pop-up__admin')
+        this._submitButton = this.form.querySelector('.pop-up__submit-button')
+        this._originalSubmitText = this._submitButton.textContent
         this._inputList = Array.from(this.form.querySelectorAll(formSettings.inputSelector));
     }
 
@@ -17,18 +21,19 @@ export default class PopupWithForm extends Popup {
 
         return values
     }
-    
+
     close() {
         super.close()
         this.form.reset()
+        this._submitButton.textContent = this._originalSubmitText
     }
 
     setEventListeners() {
         super.setEventListeners()
         this.form.addEventListener('submit', (evt) => {
             evt.preventDefault();
+            this._submitButton.textContent = 'Сохранение...'
             this._onFormSubmit(this._getInputValues())
-            this.close()
         });
     }
 }

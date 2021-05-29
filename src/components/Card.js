@@ -1,16 +1,18 @@
 export default class Card {
-    constructor(id, elementTitle, elementLink, likeCount, templateSelector, isEditable, handleCardClick, handleCardDelete, handleCardLike) {
+    constructor(id, elementTitle, elementLink, likeCount, templateSelector, isEditable, isLiked, handleCardClick, handleCardDelete, handleCardLike) {
         this._id = id;
         this._elementTitle = elementTitle;
         this._elementLink = elementLink;
         this._likeCount = likeCount;
         this._isEditable = isEditable;
+        this._isLiked = isLiked;
         this._element = this._getTemplate(templateSelector);
         this._elementImage = this._element.querySelector('.element__image');
         this._elementLike = this._element.querySelector('.element__like');
         this._handleCardClick = handleCardClick
         this._handleCardDelete = handleCardDelete
         this._handleCardLike = handleCardLike
+
     }
 
     _getTemplate(selector) {
@@ -22,9 +24,16 @@ export default class Card {
 
         if (this._isEditable) {
             cardElement
-            .querySelector('.element__bin')
-            .classList
-            .add('element__bin_active')
+                .querySelector('.element__bin')
+                .classList
+                .add('element__bin_active')
+        }
+
+        if (this._isLiked) {
+            cardElement
+                .querySelector('.element__like')
+                .classList
+                .add('element__like_active')
         }
 
         return cardElement
@@ -40,8 +49,8 @@ export default class Card {
     _handleLikeIcon(like) {
         like.classList.toggle('element__like_active');
         this._handleCardLike(
-            like.classList.contains('element__like_active'), 
-            this._elementLike, 
+            like.classList.contains('element__like_active'),
+            this._elementLike,
             this._id
         )
     }

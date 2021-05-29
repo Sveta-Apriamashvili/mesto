@@ -8,7 +8,8 @@ export const profileSelectors = {
     addButton: '.profile__add-button',
     nameLabel: '.profile-info__name',
     aboutLabel: '.profile-info__about',
-    avatarImage: '.profile-info__avatar'
+    avatarImage: '.profile-info__avatar',
+    avatarEditButton: '.profile-info__edit-avatar',
 }
 
 export const formSettings = {
@@ -29,6 +30,7 @@ export const popupSelectors = {
     addElementPopup: '.pop-up_type_add-element',
     imagePreviewPopup: '.pop-up_type_image',
     confirmationPopup: '.pop-up_type_remove-card',
+    editAvatarPopup: '.pop-up_type_edit-avatar',
 }
 
 export const cardSelectors = {
