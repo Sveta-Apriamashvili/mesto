@@ -3,31 +3,23 @@ class Api {
         this._baseUrl = options.baseUrl
         this._headers = options.headers
     }
-
+    
     // User
 
     getUserInfo() {
-        const url = this._baseUrl + '/users/me'
+        const url = `${this._baseUrl}/users/me`
         return fetch(url, {
                 headers: this._headers
             })
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }
+            .then(this._getResponseData);
 
-                return Promise.reject(`Ошибка: ${res.status}`);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
     }
 
     editUserInfo({
         name,
         about
     }) {
-        const url = this._baseUrl + '/users/me'
+        const url = `${this._baseUrl}/users/me`
         return fetch(url, {
                 method: 'PATCH',
                 headers: this._headers,
@@ -37,19 +29,12 @@ class Api {
                     about: about
                 })
             })
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }
-                return Promise.reject(`Ошибка: ${res.status}`);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+            .then(this._getResponseData);
+
     }
 
     updateAvatar(link) {
-        const url = this._baseUrl + '/users/me/avatar'
+        const url = `${this._baseUrl}/users/me/avatar`
         return fetch(url, {
                 method: 'PATCH',
                 headers: this._headers,
@@ -58,40 +43,26 @@ class Api {
                     avatar: link,
                 })
             })
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }
-                return Promise.reject(`Ошибка: ${res.status}`);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+            .then(this._getResponseData);
+
     }
 
     // Cards
 
     getInitialCards() {
-        const url = this._baseUrl + '/cards'
+        const url = `${this._baseUrl}/cards`
         return fetch(url, {
                 headers: this._headers
             })
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }
-                return Promise.reject(`Ошибка: ${res.status}`);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+            .then(this._getResponseData);
+
     }
 
     addNewCard({
         name,
         link
     }) {
-        const url = this._baseUrl + '/cards'
+        const url = `${this._baseUrl}/cards`
         return fetch(url, {
                 method: 'POST',
                 headers: this._headers,
@@ -100,19 +71,11 @@ class Api {
                     link: link
                 })
             })
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }
-                return Promise.reject(`Ошибка: ${res.status}`);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+            .then(this._getResponseData);
     }
 
     deleteCard(id) {
-        const url = this._baseUrl + '/cards/' + id
+        const url = `${this._baseUrl}/cards/${id}`
         return fetch(url, {
                 method: 'DELETE',
                 headers: this._headers,
@@ -122,44 +85,32 @@ class Api {
                     return res;
                 }
                 return Promise.reject(`Ошибка: ${res.status}`);
-            })
-            .catch((err) => {
-                console.log(err);
             });
     }
 
     addLike(id) {
-        const url = this._baseUrl + '/cards/likes/' + id
+        const url = `${this._baseUrl}/cards/likes/${id}`
         return fetch(url, {
                 method: 'PUT',
                 headers: this._headers,
             })
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }
-                return Promise.reject(`Ошибка: ${res.status}`);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+            .then(this._getResponseData);
     }
 
     deleteLike(id) {
-        const url = this._baseUrl + '/cards/likes/' + id
+        const url = `${this._baseUrl}/cards/likes/${id}`
         return fetch(url, {
                 method: 'DELETE',
                 headers: this._headers,
             })
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }
-                return Promise.reject(`Ошибка: ${res.status}`);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+            .then(this._getResponseData);
+    }
+
+    _getResponseData(res) {
+        if (!res.ok) {
+            return Promise.reject(`Ошибка: ${res.status}`);
+        }
+        return res.json();
     }
 
 }

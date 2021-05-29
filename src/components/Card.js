@@ -47,20 +47,17 @@ export default class Card {
     }
 
     _handleLikeIcon(like) {
-        like.classList.toggle('element__like_active');
         this._handleCardLike(
+            this,
+            this._id,
             like.classList.contains('element__like_active'),
-            this._elementLike,
-            this._id
         )
     }
 
     _assignListeners() {
-        const elementLike = this._element.querySelector('.element__like');
-        elementLike.addEventListener('click', () => this._handleLikeIcon(elementLike))
-
+        this._elementLike.addEventListener('click', () => this._handleLikeIcon(this._elementLike))
         const removeButton = this._element.querySelector('.element__bin');
-        removeButton.addEventListener('click', () => this._handleCardDelete(this._element, this._id))
+        removeButton.addEventListener('click', () => this._handleCardDelete(this, this._id))
 
         this._elementImage.addEventListener('click', () => {
             this._handleCardClick({
@@ -75,5 +72,17 @@ export default class Card {
         this._assignListeners()
 
         return this._element
+    }
+
+    setLikesCount(value) {
+        this._elementLike.textContent = value
+    }
+
+    toggleLike() {
+        this._elementLike.classList.toggle('element__like_active');
+    }
+
+    delete() {
+        this._element.remove()
     }
 }

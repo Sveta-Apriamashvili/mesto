@@ -52,7 +52,6 @@ cardEditFormValidator.enableValidation()
 avatarEditFormValidator.enableValidation()
 
 // User Info
-let currentUser;
 const userInfo = new UserInfo({
     usernameSelector: profileSelectors.nameLabel,
     aboutSelector: profileSelectors.aboutLabel,
@@ -64,24 +63,28 @@ const userInfo = new UserInfo({
 
 userInfo.setEventListeners();
 
-api.getUserInfo().then((data) => {
-    currentUser = data;
-    userInfo.setUserInfo({
-        username: data.name,
-        about: data.about,
-        avatar: data.avatar
-    });
-})
-
-const userNameInput = profileEditPopup.form.querySelector('#name')
-const userAboutInput = profileEditPopup.form.querySelector('#about')
-
-
-// Cards
+let currentUser;
 let cardSection;
-api.getInitialCards().then((data) => {
+Promise.all([
+    api.getUserInfo(),
+    api.getInitialCards()
+]).then((values) => {
+    setUserInfo(values[0])
+    setInitialCards(values[1])
+}).catch(logError)
+
+function setUserInfo(info) {
+    currentUser = info;
+    userInfo.setUserInfo({
+        username: info.name,
+        about: info.about,
+        avatar: info.avatar
+    });
+}
+
+function setInitialCards(cards) {
     cardSection = new Section({
-            items: data,
+            items: cards,
             renderer: (item) => {
                 const cardElement = createCard(item)
                 cardSection.addItem(cardElement);
@@ -90,8 +93,10 @@ api.getInitialCards().then((data) => {
         cardSelectors.grid
     )
     cardSection.renderItems()
-})
+}
 
+const userNameInput = profileEditPopup.form.querySelector('#name')
+const userAboutInput = profileEditPopup.form.querySelector('#about')
 
 // Add cards
 function createCard(item) {
@@ -118,13 +123,16 @@ function handleFormSubmit(values) {
         name: values[formSettings.nameKey],
         about: values[formSettings.aboutKey]
     }).then((data) => {
-        profileEditPopup.close()
         userInfo.setUserInfo({
             username: data.name,
             about: data.about,
             avatar: data.avatar
         });
     })
+    .catch(logError)
+    .finally(() => {
+        profileEditPopup.close()
+    });
 }
 
 // Create new card
@@ -133,9 +141,12 @@ function handleAddCard(values) {
         name: values[formSettings.nameKey],
         link: values[formSettings.aboutKey]
     }).then((data) => {
-        cardAddPopup.close()
         cardSection.prependItem(createCard(data));
     })
+    .catch(logError)
+    .finally(() => {
+        cardAddPopup.close()
+    });
 
 }
 
@@ -146,22 +157,27 @@ function handleClickCard({
     imagePreviewPopup.open(url, title)
 }
 
-function handleDeleteCard(element, id) {
+function handleDeleteCard(card, id) {
     confirmationPopup.open(() => {
-        api.deleteCard(id)
-        element.remove()
-        confirmationPopup.close()
+        api.deleteCard(id).then(() => {
+            card.delete()
+        })
+        .catch(logError)
+        .finally(() => {
+            confirmationPopup.close()
+        });
     })
 }
 
-function handleCardLike(isActive, element, id) {
+function handleCardLike(card, id, isActive) {
     function assignLikeCount(data) {
-        element.textContent = data.likes.length
+        card.setLikesCount(data.likes.length)
+        card.toggleLike()
     }
-    if (isActive) {
-        api.addLike(id).then(assignLikeCount)
+    if (!isActive) {
+        api.addLike(id).then(assignLikeCount).catch(logError)
     } else {
-        api.deleteLike(id).then(assignLikeCount)
+        api.deleteLike(id).then(assignLikeCount).catch(logError)
     }
 }
 
@@ -187,12 +203,19 @@ function openAvatarEditForm() {
 function submitNewAvatar(values) {
     const link = values[formSettings.aboutKey]
     api.updateAvatar(link).then((data) => {
-        avatarEditPopup.close()
-        currentUser = data;
-        userInfo.setUserInfo({
-            username: data.name,
-            about: data.about,
-            avatar: data.avatar
+            currentUser = data;
+            userInfo.setUserInfo({
+                username: data.name,
+                about: data.about,
+                avatar: data.avatar
+            });
+        })
+        .catch(logError)
+        .finally(() => {
+            avatarEditPopup.close()
         });
-    })
+}
+
+function logError(err) {
+    console.log(err);
 }
