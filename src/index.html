@@ -16,7 +16,7 @@
             <section class="profile">
                 <div class="profile-info">
                     <img class="profile-info__avatar" src="<%=require('./images/avatar.jpg')%>" alt="аватарка">
-                    <button  class="profile-info__edit-avatar" type="button" aria-label="редактировать"></button>
+                    <button class="profile-info__edit-avatar" type="button" aria-label="редактировать"></button>
                     <div class="profile-info__info">
                         <h1 class="profile-info__name"></h1>
                         <p class="profile-info__about"></p>
@@ -38,11 +38,11 @@
                 <h3 class=" pop-up__title">Редактировать профиль</h3>
                 <form class="pop-up__admin" name="edit-profile" novalidate>
                     <div class="pop-up__input-container">
-                        <input type="text" class="pop-up__item" id="name" name="name"
-                            placeholder="Имя" minlength="2" maxlength="40" required>
+                        <input type="text" class="pop-up__item" id="name" name="name" placeholder="Имя" minlength="2"
+                            maxlength="40" required>
                         <span class="pop-up__error" id="name-error"></span>
-                        <input type="text" class="pop-up__item" id="about"
-                            name="about" placeholder="О себе" minlength="2" maxlength="200" required>
+                        <input type="text" class="pop-up__item" id="about" name="about" placeholder="О себе"
+                            minlength="2" maxlength="200" required>
                         <span class="pop-up__error" id="about-error"></span>
                     </div>
                     <button type="submit" class="pop-up__submit-button">Сохранить</button>
@@ -55,8 +55,8 @@
                 <h3 class=" pop-up__title">Обновить аватар</h3>
                 <form class="pop-up__admin" name="edit-avatar" novalidate>
                     <div class="pop-up__input-container">
-                        <input type="url" class="pop-up__item" id="image"
-                            name="about" placeholder="Ссылка на картинку" required>
+                        <input type="url" class="pop-up__item" id="image" name="about" placeholder="Ссылка на картинку"
+                            required>
                         <span class="pop-up__error" id="image-error"></span>
                     </div>
                     <button disabled type="submit" class="pop-up__submit-button">Сохранить</button>
@@ -69,11 +69,11 @@
                 <h3 class=" pop-up__title">Новое место</h3>
                 <form class="pop-up__admin" name="add-image" novalidate>
                     <div class="pop-up__input-container">
-                        <input type="text" class="pop-up__item" id="cardname"
-                            name="name" placeholder="Название" minlength="2" maxlength="200" required>
+                        <input type="text" class="pop-up__item" id="cardname" name="name" placeholder="Название"
+                            minlength="2" maxlength="200" required>
                         <span class="pop-up__error" id="cardname-error"></span>
-                        <input type="url" class="pop-up__item" id="image"
-                            name="about" placeholder="Ссылка на картинку" required>
+                        <input type="url" class="pop-up__item" id="image" name="about" placeholder="Ссылка на картинку"
+                            required>
                         <span class="pop-up__error" id="image-error"></span>
                     </div>
                     <button disabled type="submit" class="pop-up__submit-button">Создать</button>
