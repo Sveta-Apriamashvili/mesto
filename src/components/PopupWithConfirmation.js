@@ -18,4 +18,5 @@ export default class PopupWithConfirmation extends Popup {
             this._confirmationButton.removeEventListener('click', this._pendingAction)
         }
     }
+    
 }

@@ -119,6 +119,7 @@ function createCard(item) {
 
 // Apply profile edit form data
 function handleFormSubmit(values) {
+    profileEditPopup.showLoader()
     api.editUserInfo({
         name: values[formSettings.nameKey],
         about: values[formSettings.aboutKey]
@@ -128,24 +129,27 @@ function handleFormSubmit(values) {
             about: data.about,
             avatar: data.avatar
         });
+        profileEditPopup.close()
     })
     .catch(logError)
     .finally(() => {
-        profileEditPopup.close()
+        profileEditPopup.hideLoader()
     });
 }
 
 // Create new card
 function handleAddCard(values) {
+    cardAddPopup.showLoader()
     api.addNewCard({
         name: values[formSettings.nameKey],
         link: values[formSettings.aboutKey]
     }).then((data) => {
         cardSection.prependItem(createCard(data));
+        cardAddPopup.close()
     })
     .catch(logError)
     .finally(() => {
-        cardAddPopup.close()
+        cardAddPopup.hideLoader()
     });
 
 }
@@ -161,11 +165,9 @@ function handleDeleteCard(card, id) {
     confirmationPopup.open(() => {
         api.deleteCard(id).then(() => {
             card.delete()
-        })
-        .catch(logError)
-        .finally(() => {
             confirmationPopup.close()
-        });
+        })
+        .catch(logError);
     })
 }
 
@@ -202,6 +204,7 @@ function openAvatarEditForm() {
 
 function submitNewAvatar(values) {
     const link = values[formSettings.aboutKey]
+    avatarEditPopup.showLoader()
     api.updateAvatar(link).then((data) => {
             currentUser = data;
             userInfo.setUserInfo({
@@ -209,10 +212,11 @@ function submitNewAvatar(values) {
                 about: data.about,
                 avatar: data.avatar
             });
+            avatarEditPopup.close()
         })
         .catch(logError)
         .finally(() => {
-            avatarEditPopup.close()
+            avatarEditPopup.hideLoader()
         });
 }
 
